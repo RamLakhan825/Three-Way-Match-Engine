@@ -158,6 +158,9 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/file', async (req, res) => {
   const doc = await UploadedDocument.findById(req.params.id);
   if (!doc) return res.status(404).json({ error: 'Not found' });
+  console.log(doc.filePath);
+  console.log(fs.existsSync(doc.filePath));
+
   res.sendFile(path.resolve(doc.filePath));
 });
 
