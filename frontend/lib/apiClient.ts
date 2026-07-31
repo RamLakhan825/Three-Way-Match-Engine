@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: 'https://three-way-match-engine-all0.onrender.com',
 });
 
 apiClient.interceptors.request.use((config) => {
