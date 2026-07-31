@@ -1,0 +1,222 @@
+{
+  "info": {
+    "name": "Three-Way Match Engine",
+    "description": "PO / GRN / Invoice three-way match API. Set {{baseUrl}} and {{token}} collection variables (token comes from Auth > Login response).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "poNumber", "value": "CI4PO05788" },
+    { "key": "uploadedDocumentId", "value": "" },
+    { "key": "skuMasterId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Upload PO",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": [] },
+                { "key": "documentType", "value": "po", "type": "text" }
+              ]
+            },
+            "url": { "raw": "{{baseUrl}}/documents/upload", "host": ["{{baseUrl}}"], "path": ["documents", "upload"] }
+          }
+        },
+        {
+          "name": "Upload GRN",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": [] },
+                { "key": "documentType", "value": "grn", "type": "text" }
+              ]
+            },
+            "url": { "raw": "{{baseUrl}}/documents/upload", "host": ["{{baseUrl}}"], "path": ["documents", "upload"] }
+          }
+        },
+        {
+          "name": "Upload Invoice",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": [] },
+                { "key": "documentType", "value": "invoice", "type": "text" }
+              ]
+            },
+            "url": { "raw": "{{baseUrl}}/documents/upload", "host": ["{{baseUrl}}"], "path": ["documents", "upload"] }
+          }
+        },
+        {
+          "name": "List Documents",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/documents?type=po",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents"],
+              "query": [{ "key": "type", "value": "po" }]
+            }
+          }
+        },
+        {
+          "name": "Get Document By Id (parsed record)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id"],
+              "variable": [{ "key": "id", "value": "{{uploadedDocumentId}}" }]
+            }
+          }
+        },
+        {
+          "name": "Get Document File (preview)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/file",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "file"],
+              "variable": [{ "key": "id", "value": "{{uploadedDocumentId}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Match & Summary",
+      "item": [
+        {
+          "name": "Get Match",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/match/:poNumber",
+              "host": ["{{baseUrl}}"],
+              "path": ["match", ":poNumber"],
+              "variable": [{ "key": "poNumber", "value": "{{poNumber}}" }]
+            }
+          }
+        },
+        {
+          "name": "Get Summary",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/summary/:poNumber",
+              "host": ["{{baseUrl}}"],
+              "path": ["summary", ":poNumber"],
+              "variable": [{ "key": "poNumber", "value": "{{poNumber}}" }]
+            }
+          }
+        },
+        {
+          "name": "List PO Numbers (dashboard)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/po-list", "host": ["{{baseUrl}}"], "path": ["po-list"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SKU Master",
+      "item": [
+        {
+          "name": "List SKU Masters",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/masters/sku", "host": ["{{baseUrl}}"], "path": ["masters", "sku"] }
+          }
+        },
+        {
+          "name": "Create SKU Master",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skuErpCode\": \"TEST-001\",\n  \"name\": \"Test SKU\",\n  \"eanCode\": \"FG-TEST-001\",\n  \"hsnCode\": \"19022010\",\n  \"uom\": \"PKT\",\n  \"agreedRate\": 100,\n  \"mrp\": 150,\n  \"priceTolerance\": 0.05\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/masters/sku", "host": ["{{baseUrl}}"], "path": ["masters", "sku"] }
+          }
+        },
+        {
+          "name": "Get SKU Master By Id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/masters/sku/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["masters", "sku", ":id"],
+              "variable": [{ "key": "id", "value": "{{skuMasterId}}" }]
+            }
+          }
+        },
+        {
+          "name": "Update SKU Master",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agreedRate\": 105\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/masters/sku/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["masters", "sku", ":id"],
+              "variable": [{ "key": "id", "value": "{{skuMasterId}}" }]
+            }
+          }
+        },
+        {
+          "name": "Delete SKU Master",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/masters/sku/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["masters", "sku", ":id"],
+              "variable": [{ "key": "id", "value": "{{skuMasterId}}" }]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

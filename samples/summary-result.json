@@ -1,0 +1,66 @@
+{
+    "poNumber": "CI4PO05788",
+    "status": "mismatch",
+    "poAmount": 863996.19,
+    "totalInvoiced": 2229791.07,
+    "totalReceived": 18820,
+    "rows": [
+        {
+            "documentType": "GRN",
+            "documentNumber": "CI4000020234",
+            "date": "2026-03-24T00:00:00.000Z",
+            "cumulativeReceivedQty": 4705,
+            "cumulativeInvoicedQty": 0
+        },
+        {
+            "documentType": "Invoice",
+            "documentNumber": "IN25MH2504251",
+            "date": "2026-03-24T00:00:00.000Z",
+            "cumulativeReceivedQty": 4705,
+            "cumulativeInvoicedQty": 4705
+        },
+        {
+            "documentType": "GRN",
+            "documentNumber": "CI4000020234",
+            "date": "2026-03-24T00:00:00.000Z",
+            "cumulativeReceivedQty": 9410,
+            "cumulativeInvoicedQty": 4705
+        },
+        {
+            "documentType": "Invoice",
+            "documentNumber": "IN25MH2504251",
+            "date": "2026-03-24T00:00:00.000Z",
+            "cumulativeReceivedQty": 9410,
+            "cumulativeInvoicedQty": 9410
+        },
+        {
+            "documentType": "GRN",
+            "documentNumber": "CI4000020234",
+            "date": "2026-03-24T00:00:00.000Z",
+            "cumulativeReceivedQty": 14115,
+            "cumulativeInvoicedQty": 9410
+        },
+        {
+            "documentType": "Invoice",
+            "documentNumber": "IN25MH2504251",
+            "date": "2026-03-24T00:00:00.000Z",
+            "cumulativeReceivedQty": 14115,
+            "cumulativeInvoicedQty": 14115
+        },
+        {
+            "documentType": "GRN",
+            "documentNumber": "CI4000020234",
+            "date": "2026-03-24T00:00:00.000Z",
+            "cumulativeReceivedQty": 18820,
+            "cumulativeInvoicedQty": 14115
+        },
+        {
+            "documentType": "Current Status",
+            "documentNumber": "",
+            "date": null,
+            "cumulativeReceivedQty": 18820,
+            "cumulativeInvoicedQty": 14115,
+            "pendingDeliveryQty": 1302
+        }
+    ]
+}
