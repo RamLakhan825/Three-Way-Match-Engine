@@ -38,19 +38,19 @@ export default function LoginPage() {
 
         <label className="block text-sm font-medium text-slate-600 mb-1">Username</label>
         <input
-          className="w-full border border-slate-300 rounded px-3 py-2 mb-4 text-sm"
+          className="w-full border border-slate-300 rounded px-3 py-2 mb-4 text-sm text-black"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="admin"
+          placeholder="enter your username"
         />
 
         <label className="block text-sm font-medium text-slate-600 mb-1">Password</label>
         <input
           type="password"
-          className="w-full border border-slate-300 rounded px-3 py-2 mb-4 text-sm"
+          className="w-full border border-slate-300 rounded px-3 py-2 mb-4 text-sm text-black"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="admin"
+          placeholder="enter your password"
         />
 
         {error && <p className="text-red-600 text-sm mb-4">{error}</p>}

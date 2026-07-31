@@ -49,7 +49,7 @@ export default function UploadModal({
 
         <label className="block text-sm font-medium text-slate-600 mb-1">Document Type</label>
         <select
-          className="w-full border border-slate-300 rounded px-3 py-2 mb-4 text-sm"
+          className="w-full border border-slate-300 rounded px-3 py-2 mb-4 text-sm text-black bg-white"
           value={documentType}
           onChange={(e) => setDocumentType(e.target.value as any)}
         >
@@ -62,7 +62,20 @@ export default function UploadModal({
         <input
           type="file"
           accept=".pdf,.png,.jpg,.jpeg"
-          className="w-full text-sm mb-4"
+          className="w-full
+    text-sm
+    text-black
+    mb-4
+    file:mr-4
+    file:px-4
+    file:py-2
+    file:rounded-lg
+    file:border-0
+    file:bg-blue-600
+    file:text-white
+    file:font-medium
+    hover:file:bg-blue-700
+    cursor-pointer"
           onChange={(e) => setFile(e.target.files?.[0] || null)}
         />
 
